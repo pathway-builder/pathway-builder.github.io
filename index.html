@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+  </head>
+  <body>
+
+    <main class="layout">
+      <section class="middle quads">
+        <h1>PLP Result</h1>
+        <p>Adjust the PLP quadrant values to see the pathways change (should equal 100, but not required for this demo).</p>
+        <div id="quadrants"></div>
+        <button id="randQ" class="btn-rand">Randomize PLP Results</button>
+      </section>
+      <section class="middle maps">
+        <h1>Relevance of a Module to a Quadrant</h1>
+        <p>Assign weights to each module in terms of its relevance to the quadrant.</p>
+        <datalist id="tickmarks">
+          <option value="0">
+          <option value=".5">
+          <option value="1">
+        </datalist>
+        <div id="mapping"></div>
+      </section>
+      <section class="middle mods">
+        <h1>Custom Module Pathway</h1>
+        <p>Here is the custom module pathway, prioritized by your PLP results (top row based on the data above, older rows shown for comparison).</p>
+        <div id="modules"></div>
+      </section>
+
+    </main>
+
+
+
+
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script> -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
