@@ -30,9 +30,7 @@ var qmMap = [
 qmMap.forEach((quad, r) => {
   var qm = document.createElement('div');
   qm.classList.add('one-q');
-  var labelsM = "<div></div>";
-  var labelsQ = "";
-  var sliders = "";
+  var labelsM = "<div></div>", labelsQ = "", sliders = "";
 
   quad.forEach((mod, c) => {
     labelsM += `<div class="lbl-m">${modules[c].num}</div>`;
@@ -121,19 +119,28 @@ quadrants.forEach((quad, n) => {
 
 // Randomize quadrants
 function randomQuadrants() {
-  var seedmax = 60;
-  var a = Math.floor(Math.random() * seedmax);
-  var b = Math.floor(Math.random() * seedmax);
-  var c = Math.floor(Math.random() * seedmax);
-  var d = Math.floor(Math.random() * seedmax);
-  var factor = 100 / (a + b + c + d);
-  quadrants[0].val = Math.round(a * factor) / 100
-  quadrants[1].val = Math.round(b * factor) / 100
-  quadrants[2].val = Math.round(c * factor) / 100
-  quadrants[3].val = (100 - Math.round(a * factor) - Math.round(b * factor) - Math.round(c * factor)) / 100;
-  quadrants.forEach((quad, n) => {
-    document.getElementById('q'+n).value = parseInt(quadrants[n].val * 100);
-  })
+  var seedmax = 60, seedmin = 15;
+  var qAr = new Array();
+  var factor = 0, total = 0;
+
+  for (var i = 0; i < 4; i++) {
+    factor += qAr[i] = Math.floor(Math.random() * (seedmax - seedmin) + seedmin);
+  }
+
+  factor = 100 / factor;
+
+  for (var i = 0; i < 4; i++) {
+    var _val;
+    if (i == quadrants.length - 1)
+      _val = 100 - total;
+    else
+      _val = Math.round(qAr[i] * factor);
+
+    quadrants[i].val = _val / 100;
+    total += _val;
+    document.getElementById('q'+i).value = _val;
+  }
+
   computeModules();
 }
 document.getElementById('randQ').addEventListener('click', randomQuadrants);
